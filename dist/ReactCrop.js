@@ -276,7 +276,7 @@ process.umask = function() { return 0; };
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * 
+ *
  */
 
 function makeEmptyFunction(arg) {
@@ -745,7 +745,10 @@ var ReactCrop = function (_PureComponent) {
       };
 
       _this.mouseDownOnCrop = true;
-      onChange(nextCrop, getPixelCrop(_this.imageRef, nextCrop));
+      onChange({
+        crop: nextCrop,
+        pixelCrop: getPixelCrop(_this.imageRef, nextCrop)
+      });
       _this.setState({ cropIsActive: true });
     }, _this.onDocMouseTouchMove = function (e) {
       var _this$props3 = _this.props,
@@ -790,7 +793,10 @@ var ReactCrop = function (_PureComponent) {
         nextCrop = _this.dragCrop();
       }
 
-      onChange(nextCrop, getPixelCrop(_this.imageRef, nextCrop));
+      onChange({
+        crop: nextCrop,
+        pixelCrop: getPixelCrop(_this.imageRef, nextCrop)
+      });
     }, _this.onComponentKeyDown = function (e) {
       var _this$props4 = _this.props,
           crop = _this$props4.crop,
@@ -831,7 +837,10 @@ var ReactCrop = function (_PureComponent) {
         nextCrop.x = clamp(nextCrop.x, 0, 100 - nextCrop.width);
         nextCrop.y = clamp(nextCrop.y, 0, 100 - nextCrop.height);
 
-        onChange(nextCrop, getPixelCrop(_this.imageRef, nextCrop));
+        onChange({
+          crop: nextCrop,
+          pixelCrop: getPixelCrop(_this.imageRef, nextCrop)
+        });
         onComplete(nextCrop, getPixelCrop(_this.imageRef, nextCrop));
       }
     }, _this.onDocMouseTouchEnd = function () {
